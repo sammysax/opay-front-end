@@ -1,26 +1,592 @@
-@import "tailwindcss";
-
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* Dashboard page styles */
+.container {
+  min-height: 100vh;
+  background-color: #f9fafb;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 2rem 1rem;
+  font-family: system-ui, -apple-system, sans-serif;
+  color: #1f2937;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+.dashboard {
+  width: 100%;
+  max-width: 420px;
+  background-color: #ffffff;
+  border-radius: 24px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+  border: 1px solid #f3f4f6;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+.userInfo {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #16a34a;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 1.125rem;
+}
+
+.greeting p {
+  margin: 0;
+  font-size: 0.75rem;
+  color: #9ca3af;
+  font-weight: 500;
+}
+
+.greeting h2 {
+  margin: 0;
+  font-size: 0.875rem;
+  font-weight: 700;
+}
+
+.notificationBtn {
+  position: relative;
+  background: #f9fafb;
+  border: none;
+  padding: 0.5rem;
+  border-radius: 50%;
+  cursor: pointer;
+  color: #6b7280;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.notificationDot {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 8px;
+  height: 8px;
+  background-color: #ef4444;
+  border-radius: 50%;
+}
+
+.balanceCard {
+  background: linear-gradient(135deg, #22c55e, #16a34a);
+  border-radius: 16px;
+  padding: 1.5rem;
+  color: white;
+  position: relative;
+  overflow: hidden;
+}
+
+.balanceLabel {
+  font-size: 0.75rem;
+  margin: 0 0 0.25rem 0;
+  opacity: 0.9;
+}
+
+.balanceAmount {
+  font-size: 2rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+.cardFooter {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-top: 2rem;
+}
+
+.cardNumber {
+  font-family: monospace;
+  font-size: 0.875rem;
+  letter-spacing: 2px;
+  opacity: 0.9;
+  margin: 0;
+}
+
+.cardType {
+  font-size: 1.125rem;
+  font-weight: 900;
+  font-style: italic;
+  letter-spacing: 1px;
+}
+
+.actionGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.5rem;
+}
+
+.actionBtn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: #f9fafb;
+  border: none;
+  border-radius: 12px;
+  padding: 0.75rem;
+  cursor: pointer;
+  gap: 0.5rem;
+  transition: background-color 0.2s;
+}
+
+.actionBtn:hover {
+  background: #f3f4f6;
+}
+
+.actionBtn span {
+  font-size: 0.65rem;
+  font-weight: 600;
+  color: #4b5563;
+}
+
+.iconGreen { color: #16a34a; }
+.iconRed { color: #ef4444; }
+.iconBlue { color: #3b82f6; }
+.iconAmber { color: #f59e0b; }
+
+.summaryGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+}
+
+.summaryCard {
+  background: #f9fafb;
+  border: 1px solid #f3f4f6;
+  border-radius: 12px;
+  padding: 1rem;
+}
+
+.summaryLabel {
+  font-size: 0.7rem;
+  color: #9ca3af;
+  font-weight: 500;
+  margin: 0 0 0.25rem 0;
+}
+
+.incomeAmount {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #16a34a;
+  margin: 0;
+}
+
+.expenseAmount {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #ef4444;
+  margin: 0;
+}
+
+.transactions {
+  background: #f9fafb;
+  border: 1px solid #f3f4f6;
+  border-radius: 12px;
+  padding: 1rem;
+}
+
+.transactions h3 {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #374151;
+  margin: 0 0 1rem 0;
+}
+
+.emptyState {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem 0;
+  gap: 0.5rem;
+}
+
+.emptyIconWrapper {
+  background: white;
+  padding: 0.75rem;
+  border-radius: 50%;
+  color: #d1d5db;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.emptyState p {
+  font-size: 0.75rem;
+  color: #9ca3af;
+  font-weight: 500;
+  margin: 0;
+}
+
+/* Header */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.userInfo {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #16a34a;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 1.125rem;
+}
+
+.greeting p {
+  margin: 0;
+  font-size: 0.75rem;
+  color: #9ca3af;
+  font-weight: 500;
+}
+
+.greeting h2 {
+  margin: 0;
+  font-size: 0.875rem;
+  font-weight: 700;
+}
+
+.notificationBtn {
+  position: relative;
+  background: #f9fafb;
+  border: none;
+  padding: 0.5rem;
+  border-radius: 50%;
+  cursor: pointer;
+  color: #6b7280;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.notificationDot {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 8px;
+  height: 8px;
+  background-color: #ef4444;
+  border-radius: 50%;
+}
+
+.notificationWrapper {
+  animation: pulse 2s infinite;}
+
+/* Main Balance Card */
+.balanceCard {
+  background: linear-gradient(135deg, #22c55e, #16a34a);
+  border-radius: 16px;
+  padding: 1.5rem;
+  color: white;
+  position: relative;
+  overflow: hidden;
+}
+
+.balanceLabel {
+  font-size: 0.75rem;
+  margin: 0 0 0.25rem 0;
+  opacity: 0.9;
+}
+
+.balanceAmount {
+  font-size: 2rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+.cardFooter {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-top: 2rem;
+}
+
+.cardNumber {
+  font-family: monospace;
+  font-size: 0.875rem;
+  letter-spacing: 2px;
+  opacity: 0.9;
+  margin: 0;
+}
+
+.cardType {
+  font-size: 1.125rem;
+  font-weight: 900;
+  font-style: italic;
+  letter-spacing: 1px;
+}
+
+/* Quick Actions */
+.actionGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.5rem;
+}
+
+.actionBtn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: #f9fafb;
+  border: none;
+  border-radius: 12px;
+  padding: 0.75rem;
+  cursor: pointer;
+  gap: 0.5rem;
+  transition: background-color 0.2s;
+}
+
+.actionBtn:hover {
+  background: #f3f4f6;
+}
+
+.actionBtn span {
+  font-size: 0.65rem;
+  font-weight: 600;
+  color: #4b5563;
+}
+
+.iconGreen { color: #16a34a; }
+.iconRed { color: #ef4444; }
+.iconBlue { color: #3b82f6; }
+.iconAmber { color: #f59e0b; }
+
+/* Summaries */
+.summaryGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+}
+
+.summaryCard {
+  background: #f9fafb;
+  border: 1px solid #f3f4f6;
+  border-radius: 12px;
+  padding: 1rem;
+}
+
+.summaryLabel {
+  font-size: 0.7rem;
+  color: #9ca3af;
+  font-weight: 500;
+  margin: 0 0 0.25rem 0;
+}
+
+.incomeAmount {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #16a34a;
+  margin: 0;
+}
+
+.expenseAmount {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #ef4444;
+  margin: 0;
+}
+
+.transactionItem {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 0.75rem;
+  align-items: center;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 16px;
+  padding: 1rem;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.transactionItem:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 10px 20px rgba(15, 23, 42, 0.08);
+}
+
+.transactionDetails {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.transactionTitle {
+  margin: 0;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #111827;
+}
+
+.transactionCategory {
+  margin: 0;
+  font-size: 0.8rem;
+  color: #6b7280;
+}
+
+.transactionAmount {
+  margin: 0;
+  font-size: 0.95rem;
+  font-weight: 700;
+  text-align: right;
+}
+
+.transactionAmount.positive {
+  color: #16a34a;
+}
+
+.transactionAmount.negative {
+  color: #ef4444;
+}
+
+.emptyState p {
+  font-size: 0.75rem;
+  color: #9ca3af;
+  font-weight: 500;
+  margin: 0;
+}
+
+.deleteIcon {
+  color: #303030;
+  cursor: pointer;
+  margin-left: 5.5rem;
+}
+
+.transactionFormCard {
+  position: relative;
+  width: 100%;
+  max-width: 450px;
+  background: #ffffff;
+  border-radius: 24px;
+  padding: 1.7rem;
+  box-shadow: 0 20px 50px rgba(15, 23, 42, 0.18);
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  z-index: 20;
+}
+
+.transactionFormOverlay {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  background: rgba(15, 23, 42, 0.35);
+  z-index: 10;
+}
+
+.transactionForm {
+  display: grid;
+  gap: 1rem;
+}
+
+.transactionForm label {
+  display: grid;
+  gap: 0.5rem;
+  font-weight: 600;
+  color: #374151;
+}
+
+.transactionForm input {
+  width: 100%;
+  border: 1px solid #d1d5db;
+  border-radius: 12px;
+  padding: 0.85rem 0.2rem;
+  font-size: 0.95rem;
+  outline: none;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.transactionForm input:focus {
+  border-color: green;
+  box-shadow: 0 0 0 3px rgba(26, 28, 31, 0.12);
+}
+
+.formButtons {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.submitBtn,
+.cancelBtn {
+  flex: 1;
+  min-width: 120px;
+  border: none;
+  border-radius: 12px;
+  padding: 0.9rem 1rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.submitBtn {
+  background: #16a34a;
+  color: white;
+}
+
+.cancelBtn {
+  background: #f3f4f6;
+  color: #374151;
+}
+
+.formError {
+  color: #ef4444;
+  font-size: 0.875rem;
+  margin: 0;
+}
+
+.transactionDate {
+  font-size: 0.75rem;
+  color: #6b7280;
+  margin-top: 0.25rem;
+}
+
+.editIconButton {
+  background: transparent;
+  border: none;
+  padding: 0;
+  margin-left: 4.75rem;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.editIcon {
+  /* color: #3b82f6; */
+  font-size: 1.1rem;
+}
+
+.eye {
+  position: absolute;
+  top: 3.7rem;
+  right: 13rem;
+  color: white;
+  cursor: pointer;
 }
