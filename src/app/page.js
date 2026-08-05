@@ -54,7 +54,7 @@ function Page() {
   
   const deleteTransaction = async (id) => {
     try {
-      const response = await fetch(`https://backend-class-ebam.onrender.com/api/delete-transaction`, {
+      const response = await fetch('https://backend-class-ebam.onrender.com/api/delete-transaction', {
         method: 'DELETE',
         headers: {
           "Content-Type": "application/json",
