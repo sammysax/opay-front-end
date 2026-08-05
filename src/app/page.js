@@ -26,7 +26,7 @@ function Page() {
 
 
   const fetchTransactions = () => {
-    fetch('https://backend-class-ebam.onrender.com', {
+    fetch('https://backend-class-ebam.onrender.com/api/transactions', {
       method: 'GET',
       headers: {
         "Content-Type": "application/json",
@@ -54,7 +54,7 @@ function Page() {
   
   const deleteTransaction = async (id) => {
     try {
-      const response = await fetch(`https://backend-class-ebam.onrender.com`, {
+      const response = await fetch(`https://backend-class-ebam.onrender.com/api/delete-transaction`, {
         method: 'DELETE',
         headers: {
           "Content-Type": "application/json",
@@ -157,7 +157,7 @@ function Page() {
     if (editTransaction) {
       const transactionId = editTransaction._id || editTransaction.id;
       try {
-        const response = await fetch('https://backend-class-ebam.onrender.com', {
+        const response = await fetch('https://backend-class-ebam.onrender.com/api/update-transaction', {
           method: 'PUT',
           headers: {
             'Content-Type': 'application/json',
@@ -207,7 +207,7 @@ function Page() {
     }
 
     try {
-      const response = await fetch('https://backend-class-ebam.onrender.com', {
+      const response = await fetch('https://backend-class-ebam.onrender.com/api/create-transaction', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
